@@ -1,0 +1,37 @@
+import java.util.Scanner;
+class jaggedarray
+{
+    public static void main(String args[])
+    {
+        int i,j;
+        int jaggedArray[][];
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter no of rows for jagged array:");
+        int numRows=sc.nextInt();
+        jaggedArray=new int[numRows][];
+       
+        for(i=0;i<numRows;i++)
+        {
+            System.out.println("Enter the columns for rows" +i+":");
+            int numcols=sc.nextInt();
+            jaggedArray[i]=new int[numcols];
+        }
+        for(i=0;i<jaggedArray.length;i++)
+        {
+           for(j=0;i<jaggedArray[i].length;j++)
+           {
+            System.out.println("Enter the elements at["+i+"]["+j+"]:");
+            jaggedArray[i][j]=sc.nextInt();
+           } 
+        }
+        System.out.print("Jagged array:\n");
+        for(i=0;i<jaggedArray.length;i++)
+        {
+           for(j=0;i<jaggedArray[i].length;j++)
+           {
+        System.out.print(jaggedArray[i][j] +"");
+           }
+              System.out.println();
+        }
+    }
+}
