@@ -1,0 +1,34 @@
+import threading
+import queue
+import time
+
+# Shared message queue
+msg_queue = queue.Queue()
+
+# Publisher function
+def publisher():
+    messages = ['Hai', 'Hello', 'Everyone']
+    for msg in messages:
+        print(f"Publishing: {msg}")
+        msg_queue.put(msg)
+        time.sleep(1)
+
+# Subscriber function
+def subscriber(name):
+    while True:
+        msg = msg_queue.get()
+        print(f"{name} received: {msg}")
+        msg_queue.task_done()
+
+# Create subscribers
+sub1 = threading.Thread(target=subscriber, args=('Subscriber 1',), daemon=True)
+sub2 = threading.Thread(target=subscriber, args=('Subscriber 2',), daemon=True)
+
+sub1.start()
+sub2.start()
+
+# Start publisher
+publisher()
+
+# Keep main thread alive
+msg_queue.join()
