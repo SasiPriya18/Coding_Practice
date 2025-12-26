@@ -1,0 +1,51 @@
+import java.util.* ;
+public class integers
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n;
+        n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int max=0;
+        for(int i=0;i<n;i++)
+        {
+            if(max<arr[i])
+                max=arr[i];
+        }
+        //Create an array if flags intialize with '0'
+        int flag[]=new int[max+1];
+        for(int j=0;j<max;j++)
+        {
+            flag[j]=0;
+        }
+        for(int j=0;j<n;j++)
+        {
+            flag[arr[j]]=flag[arr[j]]+1;
+        }
+        int MissedCount=0;
+        int missedEles[] =new int[max];
+        for(int j=1;j<=max;j++)
+        {
+            if(flag[j]==0)
+            {
+                missedEles[MissedCount]=j;
+                MissedCount=MissedCount+1;
+            }
+        }
+        if(MissedCount==0)
+        {
+            System.out.println("No Missed Elements");
+            return;
+        }  
+        //print the missed elements from the stored
+        for(int k=0;k<MissedCount;k++)
+        {
+            System.out.println(missedEles[k]);
+        }
+    }
+}
